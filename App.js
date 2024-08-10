@@ -8,11 +8,15 @@ import "dotenv/config";
 import AssignmentRoutes from "./Lab5/Kanbas/Assignments/routes.js";
 import mongoose from "mongoose";
 // import UserRoutes from "./Users/routes.js";
-import UserRoutes from "./User/routes.js";
+import UserRoutes from "./Lab5/Kanbas/User/routes.js";
 import session from "express-session";
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
 mongoose.connect(CONNECTION_STRING);
+
+// const CONNECTION_STRING =
+//    "mongodb://127.0.0.1:27017/kanbas";
+// mongoose.connect(CONNECTION_STRING);
 
 const app = express();
 app.use(
@@ -50,6 +54,8 @@ ModuleRoutes(app);
 CourseRoutes(app);
 AssignmentRoutes(app);
 UserRoutes(app);
+
+
 Hello(app);
 Lab5(app);
 
