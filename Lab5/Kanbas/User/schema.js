@@ -8,13 +8,20 @@ const userSchema = new mongoose.Schema({
     dob: Date,
     role: {
       type: String,
-      enum: ["STUDENT", "FACULTY", "ADMIN", "USER"],
+      enum: ["STUDENT", "FACULTY", "ADMIN", "USER"], 
       default: "USER",
     },
     loginId: String,
     section: String,
     lastActivity: Date,
     totalActivity: String,
+  
+    enrolledCourses: [
+      { //store the course numbers
+        
+        number: String
+      }
+    ]
   },
   { collection: "users" }
 );

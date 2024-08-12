@@ -30,6 +30,9 @@ const courseSchema = new mongoose.Schema({
         type: String,
         // required: false, // Description is optional
       },
+      creator: {
+        type: String,
+      }
     }, {
       collection: 'courses' // Name of the collection in MongoDB
          // Adds createdAt and updatedAt timestamps

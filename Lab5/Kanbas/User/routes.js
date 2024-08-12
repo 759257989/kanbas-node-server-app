@@ -41,6 +41,7 @@ export default function UserRoutes(app) {
   };
 
   const signup = async (req, res) => {
+    // console.log("creating user in user routes: ", req.body)
     const user = await dao.findUserByUsername(req.body.username);
     if (user) {
       res.status(400).json({ message: "Username already taken" });
@@ -56,7 +57,7 @@ export default function UserRoutes(app) {
     const currentUser = await dao.findUserByCredentials(username, password);
     if (currentUser) {
       req.session["currentUser"] = currentUser;
-      console.log('Session after setting currentUser:', req.session);
+      // console.log('Session after setting currentUser:', req.session);
       res.json(currentUser);
     } else {
       res.status(401).json({ message: "Unable to login. Try again later." });
@@ -69,8 +70,8 @@ export default function UserRoutes(app) {
   };
 
   const profile = (req, res) => {
-    console.log('Session:', req.session); // Log the session
-    console.log('Sessioncurrent user:', req.session["currentUser"]); // Log the session
+    // console.log('Session:', req.session); // Log the session
+    // console.log('Sessioncurrent user:', req.session["currentUser"]); // Log the session
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
       res.sendStatus(401);
@@ -78,6 +79,22 @@ export default function UserRoutes(app) {
     }
     res.json(currentUser);
   };
+
+
+  const updateStudentEnrollCoursesRoute = async (req, res) => {
+    const { userId } = req.params;
+    // console.log("the uid in user routes update student enroll: ", userId)
+    // console.log("the body in user routes update student enroll: ", req.body)
+
+    // Transform the request body into an array of objects with `number` key
+    const coursesToAdd = req.body.map(courseNumber => ({ number: courseNumber }));
+
+    // Update the user with the new enrolled courses
+    const status = await dao.updateStudentEnrollCourses(userId, coursesToAdd);
+
+    // console.log("the status is in user routes update student enroll: ", status)
+    res.json(status);
+  }  
 
   // Routes
   app.post("/api/users", createUser);
@@ -90,4 +107,5 @@ export default function UserRoutes(app) {
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
   app.get("/api/profile", profile);
+  app.put("/api/users/:userId/studentEnroll", updateStudentEnrollCoursesRoute)
 }
