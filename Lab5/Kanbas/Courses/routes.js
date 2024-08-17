@@ -23,9 +23,9 @@ export default function CourseRoutes(app) {
   };
 
   const findCourseById = async (req, res) => {
-    console.log("course routes param by id in courses route: ", req.params);
+    // console.log("course routes param by id in courses route: ", req.params);
     const course = await dao.findCourseById(req.params.id);
-    console.log("the course found in courses route:: ", course);
+    // console.log("the course found in courses route:: ", course);
     res.json(course);
   }; 
 
@@ -48,16 +48,16 @@ export default function CourseRoutes(app) {
   }
 
 
-  const fetchCoursesEnrolledByStudent = async (req, res) => {
-    const {id} = req.params; //student id
-    const {enrolled}  = req.body
+  // const fetchCoursesEnrolledByStudent = async (req, res) => {
+  //   const {id} = req.params; //student id
+  //   const {enrolled}  = req.body
     // console.log("fetching student id in courses routes: ", req.params)
     // console.log("fetching student enrolled in courses routes: ", req.body)
     // const studentEnrolled = 
     // const studentCourses = await dao.findStudentAllCourses(id);
     // console.log(" student courses found in courses routes: ", studentCourses)
     // res.json(studentCourses);
-  }
+  // }
 
 
   const findCourseByNumber = async (req, res) => {
@@ -71,7 +71,7 @@ export default function CourseRoutes(app) {
 
   app.get("/api/courses/:id/faculty", fetchCoursesCreatedByFaculty);
 
-  app.get("/api/courses/:id/student", fetchCoursesEnrolledByStudent);
+  // app.get("/api/courses/:id/student", fetchCoursesEnrolledByStudent);
 
 
   ////////////////////////////////////////////////////////////////

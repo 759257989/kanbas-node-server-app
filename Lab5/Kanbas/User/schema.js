@@ -22,7 +22,18 @@ const userSchema = new mongoose.Schema({
         number: String
       }
     ]
+    ,
+    quizzes: [
+      {
+          quizId: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz' },
+          courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+          answers: Map,
+          score: Number,
+          attempt: Number,
+          date: { type: Date, default: Date.now },
+      }
+  ]
   },
   { collection: "users" }
 );
-export default userSchema;
+export default userSchema; 

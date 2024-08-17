@@ -8,4 +8,4 @@ export const deleteCourse = (courseId) => model.deleteOne({ _id: courseId });
 export const findFacultyAllCourses = (id) => model.find({creator: id})
 export const findCourseByNumber = (courseNumber) => model.find({number: courseNumber})
 
-// export const findStudentAllCourses = (id) => model.find({creator: id})
+// export const findStudentAllCourses = (id) => model.find({creator: id}) 

@@ -57,8 +57,6 @@ export default function ModuleRoutes(app) {
     const status = await dao.updateModule(req.params.mid, req.body)
     // console.log("the module routes update status: ", status)
     res.sendStatus(204);
-
-
   }
 
   const createModule = async (req, res) => {
