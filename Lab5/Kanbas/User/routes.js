@@ -109,4 +109,3 @@ export default function UserRoutes(app) {
   app.get("/api/profile", profile);
   app.put("/api/users/:userId/studentEnroll", updateStudentEnrollCoursesRoute)
 }
- 
